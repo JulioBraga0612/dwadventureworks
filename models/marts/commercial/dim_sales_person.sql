@@ -1,12 +1,12 @@
 with 
     stg_person as (
       select
-          id_sales_person
-          , first_name
-          , middle_name
-          , last_name
-          , full_name
-          , person_type
+           id_person
+           , first_name
+           , middle_name
+           , last_name
+           , full_name
+           , person_type
       from {{ref('stg_sap__person')}}
     )
 
@@ -26,14 +26,7 @@ with
     )
 
     , stg_sales_person as (
-        select 
-            id_sales_person
-            , id_territory
-            , sales_quota
-            , bonus
-            , commission_pct
-            , sales_ytd
-            , sales_last_year
+        select *
         from {{ref('stg_sap__sales_person')}}
     )
 
@@ -46,6 +39,7 @@ with
         select
             stg_employee.id_sales_person
             , stg_employee.id_nacional_number
+            , stg_person.id_person
             , stg_person.full_name
             , stg_person.person_type
             , stg_employee.birth_date
@@ -57,7 +51,7 @@ with
             , stg_employee.gender
             , stg_employee.marital_status
         from stg_person
-        inner join stg_employee on stg_person.id_sales_person = stg_employee.id_sales_person
+        inner join stg_employee on stg_person.id_person = stg_employee.id_sales_person
     )
 
     , joined_employee_and_sales_person  as (
@@ -69,6 +63,7 @@ with
             , stg_sales_person.commission_pct
             , stg_sales_person.sales_ytd
             , stg_sales_person.sales_last_year
+            , joined_person_employee.id_sales_person
             , joined_person_employee.id_nacional_number
             , joined_person_employee.full_name
             , joined_person_employee.person_type
