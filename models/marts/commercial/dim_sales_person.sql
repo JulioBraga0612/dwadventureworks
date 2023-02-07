@@ -1,13 +1,13 @@
 with 
     stg_person as (
-        select 
-           id_sales_person
-           , first_name
-           , middle_name
-           , last_name
-           , full_name
-           , person_type
-        from {{ref('stg_sap__person')}}
+      select 
+          id_sales_person
+         , first_name
+         , middle_name
+         , last_name
+         , full_name
+         , person_type
+      from {{ref('stg_sap__person')}}
     )
 
     , stg_employee as (
