@@ -1,12 +1,12 @@
 with 
     stg_person as (
       select
-           id_person
-           , first_name
-           , middle_name
-           , last_name
-           , full_name
-           , person_type
+          id_person
+          , first_name
+          , middle_name
+          , last_name
+          , full_name
+          , person_type
       from {{ref('stg_sap__person')}}
     )
 
@@ -63,7 +63,6 @@ with
             , stg_sales_person.commission_pct
             , stg_sales_person.sales_ytd
             , stg_sales_person.sales_last_year
-            , joined_person_employee.id_sales_person
             , joined_person_employee.id_nacional_number
             , joined_person_employee.full_name
             , joined_person_employee.person_type
