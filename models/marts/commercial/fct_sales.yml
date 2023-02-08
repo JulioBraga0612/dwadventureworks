@@ -12,12 +12,14 @@ models:
         description: The primary key of the sale detail
         tests:
           - not_null
-
+          - unique
+          
       - name: id_territory
         description: The primary key of territory
         tests:
           - not_null    
-      
+          - unique
+          
       - name: id_ship_to_address
         description: The foreign key of the shiptoadress
         tests:
@@ -97,37 +99,29 @@ models:
           - not_null
       - name: due_date
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: status
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
         tests:
           - not_null
       - name: discount_category
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+        description: The discount of the category.
       - name: discount_type
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-       - name: name_territory
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+        description: The discount of the type.
+      - name: name_territory
+        description: The name of territory.
       - name: country_region_code
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+        description: The code country region.
       - name: group_territory
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+        description: The group territory
       - name: sale_sytd
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
         tests:
           - not_null
       - name: cost_ytd
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: cost_last_year
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-       - name: id_business_entity
+      - name: id_business_entity
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
         tests:
           - not_null
@@ -145,17 +139,14 @@ models:
           - not_null
       - name: birth_date
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-       - name: hire_date
+      - name: hire_date
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: salaried_flag
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
         tests:
           - not_null
       - name: sick_leave_hours
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: current_flag
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
         tests:
@@ -191,20 +182,16 @@ models:
           - not_null
       - name: make_flag
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: finished_goods_flag
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
         tests:
           - not_null
       - name: color
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: safety_stock_level
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: reorder_point
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: standard_cost
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
         tests:
@@ -215,36 +202,25 @@ models:
           - not_null
       - name: number_size
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-        - name: unit_mesure
+      - name: unit_mesure
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: weigh_unit_mensure
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: weight
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: days_to_manufacture
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-       - name: product_line
+      - name: product_line
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-       - name: class
+      - name: class
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-          description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: start_sell_date
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-       - name: end_sell_date
+      - name: end_sell_date
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-        - name: id_product_sub_category
+      - name: id_product_sub_category
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+        tests:        
           - not_null
       - name: id_product_category
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
@@ -252,11 +228,9 @@ models:
           - not_null
       - name: name_sub_category
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: name_category
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-        - name: id_customer
+      - name: id_customer
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
         tests:
           - not_null
@@ -282,23 +256,23 @@ models:
           - not_null
       - name: card_type
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-       - name: expired_year
+
+      - name: expired_year
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+
       - name: expired_month
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+
       - name: id_address
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+
           - not_null
       - name: city
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+
       - name: address_line_1
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+
       - name: postal_code
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
         tests:
@@ -309,8 +283,5 @@ models:
           - not_null
       - name: state_name
         description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
       - name: state_province_code
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
-        
+        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.        

@@ -3,7 +3,7 @@ version: 2
 models:
   - name: dim_sales_person
     columns:
-      - name: id_business_entity
+      - name: id_sales_person
         description: The primary key
         tests:
           - not_null   

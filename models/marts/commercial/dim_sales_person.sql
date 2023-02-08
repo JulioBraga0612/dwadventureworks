@@ -1,18 +1,18 @@
 with 
     stg_person as (
-        select 
-            id_business_entity
-            , first_name
-            , middle_name
-            , last_name
-            , full_name
-            , person_type
-        from {{ref('stg_sap__person')}}
+      select
+          id_person
+          , first_name
+          , middle_name
+          , last_name
+          , full_name
+          , person_type
+      from {{ref('stg_sap__person')}}
     )
 
     , stg_employee as (
         select 
-            id_business_entity
+            id_sales_person
             , id_nacional_number
             , birth_date
             , hire_date
@@ -37,8 +37,9 @@ with
 
     , joined_person_employee as (
         select
-            stg_employee.id_business_entity
+            stg_employee.id_sales_person
             , stg_employee.id_nacional_number
+            , stg_person.id_person
             , stg_person.full_name
             , stg_person.person_type
             , stg_employee.birth_date
@@ -50,12 +51,12 @@ with
             , stg_employee.gender
             , stg_employee.marital_status
         from stg_person
-        inner join stg_employee on stg_person.id_business_entity = stg_employee.id_business_entity
+        inner join stg_employee on stg_person.id_person = stg_employee.id_sales_person
     )
 
     , joined_employee_and_sales_person  as (
         select
-            stg_sales_person.id_business_entity
+            stg_sales_person.id_sales_person
             , stg_sales_person.id_territory
             , stg_sales_person.sales_quota
             , stg_sales_person.bonus
@@ -74,7 +75,7 @@ with
             , joined_person_employee.gender
             , joined_person_employee.marital_status
         from joined_person_employee
-        left join stg_sales_person on joined_person_employee.id_business_entity = stg_sales_person.id_business_entity
+        left join stg_sales_person on joined_person_employee.id_sales_person = stg_sales_person.id_sales_person
         where joined_person_employee.person_type = 'SP'
     )
     

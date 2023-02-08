@@ -1,7 +1,7 @@
 with
     source_person as (
         select
-            cast( businessentityid as int) as id_business_entity
+            cast( businessentityid as int) as id_sales_person
             , cast(title as string) as title
             , cast(firstname as string) as first_name
             , cast(middlename as string) as middle_name

@@ -1,7 +1,7 @@
 with
     source_sales_person as (
         select
-            cast(businessentityid as int) as id_business_entity
+            cast(businessentityid as int) as id_sales_person
             , cast(territoryid as int) as id_territory
             , cast(salesquota as int) as sales_quota
             , cast(bonus as int) as bonus
