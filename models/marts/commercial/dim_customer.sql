@@ -29,14 +29,10 @@ with
             , stg_person.title
             , stg_person.full_name
             , business_entity_adress.id_address
-        from stg_person
-        left join stg_store on stg_person.id_sales_person = stg_store.id_sales_person
-        left join business_entity_adress on joined_person_store.id_sales_person = business_entity_adress.id_sales_person
+        from  stg_store 
+        left join stg_person on stg_store .id_sales_person = stg_person.id_sales_person
+        left join business_entity_adress on stg_person.id_sales_person = business_entity_adress.id_sales_person
     )
-
-select *
-from joined_person_store
-    
     , stg_customer as (
         select 
             id_customer
@@ -50,47 +46,27 @@ from joined_person_store
         select *
         from {{ ref('int__location_joined') }}
     )
-       
-        
-       
-       
-       , joined_customer_name as (
-        select
-            joined_store_name.id_customer
-            , stg_person.id_sales_person
-            , joined_store_name.id_person
-            , joined_store_name.id_store
-            , joined_store_name.id_territory
-            , joined_store_name.store_name
-            , stg_person.title
-            , stg_person.full_name
-        from joined_store_name
-        left join stg_person on joined_store_name.id_territory = stg_person.id_territory
-    )
-
-   
-
-   
+     
     , joined_location as (
         select
-            joined_customer_name.id_customer
-            , joined_customer_name.id_sales_person
-            , joined_customer_name.id_person
-            , joined_customer_name.id_store
-            , joined_customer_name.id_territory
-            , joined_customer_name.store_name
-            , joined_customer_name.title
-            , joined_customer_name.full_name
+            joined_person_store.id_sales_person
+            , joined_person_store.store_name
+            , joined_person_store.title
+            , joined_person_store.full_name
+            , joined_person_store.id_address
+            , id_customer
+            , id_person
+            , id_store
             , int_location.city
             , int_location.state_name
             , int_location.country_name
             , int_location.state_province_code
             , int_location.country_region_code
-        from joined_customer_name
-        left join business_entity_adress as bea
-            on joined_customer_name.id_sales_person = bea.id_sales_person
-        left join int_location
-            on bea.id_address = int_location.id_address
+        from int_location
+        left join stg_customer as cust
+            on int_location.id_territory = cust.id_territory
+        left join joined_person_store
+            on int_location.id_territory = int_location.id_territory
     )
 
 select *
