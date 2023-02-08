@@ -30,11 +30,6 @@ with
         from {{ref('stg_sap__sales_person')}}
     )
 
-    , stg_sales_territory as (
-        select *
-        from {{ref('stg_sap__sales_territory')}}
-    )
-
     , joined_person_employee as (
         select
             stg_employee.id_sales_person
