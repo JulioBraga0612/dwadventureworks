@@ -134,9 +134,11 @@ with
             *
             , (unit_price*order_qty/sub_total) * (tax_amount + freight) as cost_freight_proporcion-- proporção entre frete para cada venda
             , unit_price * order_qty as gross_total_amount
+            , (unit_price * order_qty)- (standard_cost+(unit_price*order_qty/sub_total) * (tax_amount + freight)) as net_value
             , ((1-unit_price_discount)* unit_price * order_qty)  as discount 
             , cast((date_diff(order_date, hire_date, day)/365) as numeric) as tempo_de_casa
             , cast((date_diff(order_date, birth_date, day)/365) as numeric) as senioridade
+            , 
         from joined_dimensions
     )
 
