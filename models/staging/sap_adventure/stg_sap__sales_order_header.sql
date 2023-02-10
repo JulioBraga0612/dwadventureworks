@@ -5,7 +5,7 @@ with
             , cast(customerid as int) as id_customer
             , cast(salespersonid as int) as id_sales_person
             , cast(territoryid as int) as id_territory
-            , cast(billtoaddressid as string) as id_bill_to_address
+            , cast(billtoaddressid as int) as id_bill_to_address
             , cast(shiptoaddressid as int) as id_ship_to_address
             , cast(shipmethodid as int) as id_ship_method
             , cast(creditcardid as int) as id_credit_card

@@ -44,11 +44,45 @@ with
         from sales_header
         inner join sales_detail
             on sales_header.id_sales_order = sales_detail.id_sales_order
-        inner join special_offer as discount
+        left join special_offer as discount
             on sales_detail.id_special_offer = discount.id_special_offer
             and sales_header.order_date between discount.discount_start_date and discount.discount_end_date
             and sales_detail.order_qty between discount.min_qty_for_discount and coalesce(discount.max_qty_for_discount, 9999999)
     )
 
+    /* To add foreign key for dim_reason. */
+    , stg_sales_order_sales_reason as(
+        select
+            id_sales_order
+            , id_sales_reason
+        from {{ ref('stg_sap__sales_order_header_sales_reason') }}
+    )
+
+    , get_min_reason as (
+        select
+            id_sales_order
+            , min(id_sales_reason) as min_reason
+        from stg_sales_order_sales_reason
+        group by id_sales_order
+    )
+
+    , filter_orders as (
+        select
+            osr.id_sales_order
+            , osr.id_sales_reason
+            , get_min_reason.min_reason
+        from stg_sales_order_sales_reason as osr
+        inner join get_min_reason on osr.id_sales_order = get_min_reason.id_sales_order
+        where osr.id_sales_reason = get_min_reason.min_reason
+    )
+
+    , add_fk_reason as (
+        select
+            sales_data_joined.*
+            , filter_orders.id_sales_reason
+        from sales_data_joined
+        left join filter_orders on filter_orders.id_sales_order = sales_data_joined.id_sales_order
+    )
+
 select *
-from sales_data_joined
+from add_fk_reason

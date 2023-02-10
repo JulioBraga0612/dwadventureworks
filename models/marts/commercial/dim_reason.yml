@@ -5,8 +5,9 @@ models:
     columns:
       - name: id_sales_reason
         description: The primary key
-      - name: id_sales_order 
-        description: foreigner key sales order
+        tests:
+          - not_null   
+          - unique
       - name: reason_name
         description: The name reason
       - name: reason_type

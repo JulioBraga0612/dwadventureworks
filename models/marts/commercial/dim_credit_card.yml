@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: dim_credit_cards
+  - name: dim_credit_card
     columns:
       - name: id_credit_card
         description: The id_credit_card of the primary key

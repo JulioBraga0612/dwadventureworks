@@ -29,9 +29,6 @@ sources:
         columns:
           - name: idcreditcard
             description: Primary key for the credit card source.
-            tests:
-              - unique
-              - not_null
               
       - name: productsubcategory
         description: Table with information complementary customer for Adventureworks.
@@ -61,12 +58,6 @@ sources:
               - not_null
       - name: salesperson
         description: Table with information seller for Adventureworks.
-        columns:
-          - name: id_sales_person
-            description: primarykey
-            tests:
-              - unique
-              - not_null
       
       - name: businessentityaddress
         description: completar

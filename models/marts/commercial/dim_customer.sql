@@ -1,38 +1,12 @@
 with 
-    
-    stg_store as (
-        select 
-            id_sales_person
-            , store_name
-        from {{ref('stg_sap__store')}}
-    )
-
-    , stg_person as (
+    stg_person as (
         select
-            id_sales_person
+            id_person
             , title
             , full_name
         from {{ref('stg_sap__person')}}
     )
-     
-    , business_entity_adress as (
-        select
-            id_address
-            , id_sales_person
-        from {{ ref('stg_sap__business_entity_address') }}
-    )
-
-    , joined_person_store as (
-        select
-            stg_store.id_sales_person
-            , stg_store.store_name
-            , stg_person.title
-            , stg_person.full_name
-            , business_entity_adress.id_address
-        from  stg_store 
-        left join stg_person on stg_store .id_sales_person = stg_person.id_sales_person
-        left join business_entity_adress on stg_person.id_sales_person = business_entity_adress.id_sales_person
-    )
+    
     , stg_customer as (
         select 
             id_customer
@@ -42,32 +16,45 @@ with
         from {{ref('stg_sap__customer')}}
     )
     
+    , transformed as (
+        select
+            stg_customer.id_customer
+            , stg_person.id_person
+            , stg_customer.id_territory
+            , stg_person.full_name
+        from stg_customer
+        inner join stg_person on stg_customer.id_person = stg_person.id_person
+    )
+
     , int_location as (
         select *
         from {{ ref('int__location_joined') }}
     )
-     
-    , joined_location as (
+
+    , business_entity_adress as (
         select
-            joined_person_store.id_sales_person
-            , joined_person_store.store_name
-            , joined_person_store.title
-            , joined_person_store.full_name
-            , joined_person_store.id_address
-            , id_customer
-            , id_person
-            , id_store
+            id_address
+            , id_business_entity
+        from {{ ref('stg_sap__business_entity_address') }}
+        where id_address_type = 2 /* Home address code */
+    )
+
+    , joined_transformed as (
+        select
+            transformed.id_customer
+            , transformed.id_person
+            , transformed.id_territory
+            , transformed.full_name
+            , int_location.id_address as id_home_address
             , int_location.city
             , int_location.state_name
             , int_location.country_name
             , int_location.state_province_code
             , int_location.country_region_code
-        from int_location
-        left join stg_customer as cust
-            on int_location.id_territory = cust.id_territory
-        left join joined_person_store
-            on int_location.id_territory = int_location.id_territory
+        from  transformed 
+        left join business_entity_adress as bda on transformed.id_person = bda.id_business_entity
+        left join int_location on bda.id_address = int_location.id_address
     )
 
 select *
-from joined_location
+from joined_transformed
