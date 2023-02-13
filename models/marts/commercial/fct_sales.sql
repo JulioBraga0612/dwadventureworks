@@ -105,6 +105,7 @@ with
             , dim_credit_card.card_type
             , dim_credit_card.expired_year
             , dim_credit_card.expired_month
+            , int_location.country_name as country_name_billing
             , int_location.id_address as id_address_billing
             , int_location.city as city_billing
             , int_location.address_line_1 as address_line_1_billing
@@ -138,7 +139,6 @@ with
             , ((1-unit_price_discount)* unit_price * order_qty)  as discount 
             , cast((date_diff(order_date, hire_date, day)/365) as numeric) as tempo_de_casa
             , cast((date_diff(order_date, birth_date, day)/365) as numeric) as senioridade
-            , 
         from joined_dimensions
     )
 
