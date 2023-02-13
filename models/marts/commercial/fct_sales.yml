@@ -9,7 +9,7 @@ models:
         description: The primary key of the sale detail
           - unique  
       - name: id_territory
-        description: The primary key of territory
+        description: The foreign key of territory
       - name: id_ship_to_address
         description: The foreign key of the shiptoadress
       - name: creditcard_fk
@@ -21,37 +21,27 @@ models:
       - name: reason_name_final
         description: The reason attributed to the sale
       - name: orderdate
-        description: The sale's date. Considered as a degenerated dimension. No dimension table created for it.
+        description: The date order to the sale
       - name: order_status_name
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The order's status name. 
       - name: id_sales_reason
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The foreign key of the sales reason.
       - name: id_currency_rate
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The id the currency rate.
       - name: sub_total
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The Total minus shipping
       - name: total_due
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The total order.
       - name: tax_amount
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The tax amount.
       - name: freight
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The freight.
       - name: order_qty
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The quantity of the product 
       - name: unit_price
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: unit_price_discount
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The unit price of the product.
       - name: order_date
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: ship_date
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: due_date
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: status
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: discount_category
-        description: The discount of the category.
+        description: The date order.
       - name: discount_type
         description: The discount of the type.
       - name: name_territory
@@ -66,112 +56,77 @@ models:
         description: The cost this year.
       - name: cost_last_year
         description: The cost last year.
-      - name: id_business_entity
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: id_nacional_number
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
       - name: name_full_sales_person
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The full name of the seller.
       - name: person_type
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The person seller type.
       - name: birth_date
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The date birth.
       - name: hire_date
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The date birth.
       - name: salaried_flag
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: sick_leave_hours
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: current_flag
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The flag salaried.
       - name: gender
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The gender.
       - name: marital_status
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The status marital.
       - name: reason_name
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The name reason for seller
       - name: reason_type
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The type reason for seller
       - name: id_product
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description:  The foreign key of product.
       - name: id_product_model
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The id product model
       - name: name_product
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The name product.
       - name: number_product
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: make_flag
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: finished_goods_flag
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The number product.
       - name: color
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: safety_stock_level
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: reorder_point
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The color of the product.
       - name: standard_cost
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The price cost standard.
       - name: price_list
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: number_size
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: unit_mesure
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: weigh_unit_mensure
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: weight
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: days_to_manufacture
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: product_line
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: class
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The price list.
       - name: start_sell_date
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The start sell
       - name: end_sell_date
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The end sell.
       - name: id_product_sub_category
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description:  The id sub category
       - name: id_product_category
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: the id category.
       - name: name_sub_category
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The name sub category of the product
       - name: name_category
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The name category of the product
       - name: id_customer
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The name sub category od the product
       - name: id_person
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The foreign key of person.
       - name: id_store
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The foreign key of store.
       - name: store_name
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: title
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The name store.
       - name: name_full_customer
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The full customer.
       - name: id_credit_card
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-        tests:
+        description: The foreign key of credit card..
       - name: card_type
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The type credit card.
       - name: expired_year
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The expired credit card year.
       - name: expired_month
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The expired credit card month.
       - name: id_address
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The foreign key at address.
       - name: city
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
-      - name: address_line_1
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The city of the client.
       - name: postal_code
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The postal code.
       - name: id_state_province
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The foreign key state province.
       - name: state_name
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: The state name.
       - name: state_province_code
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.        
+        description: The code of province    .
