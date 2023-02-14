@@ -68,7 +68,10 @@ with
             , dim_salesperson.id_sales_person
             , dim_salesperson.id_nacional_number
             , dim_salesperson.full_name as name_full_sales_person
-            , dim_salesperson.person_type
+            , case 
+                when dim_salesperson.person_type is null then 'Online'
+                else 'Presencial'
+                end as Canal
             , dim_salesperson.birth_date
             , dim_salesperson.hire_date
             , dim_salesperson.salaried_flag
